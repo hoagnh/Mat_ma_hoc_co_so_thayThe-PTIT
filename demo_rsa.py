@@ -2,24 +2,24 @@ import random
 from sympy import isprime, mod_inverse
 
 
-def generate_prime(bits=2048):  # Tăng số bit lên 512-bit để phù hợp với laptop
+def generate_prime(bits=2048):  
     while True:
-        num = random.getrandbits(bits) | (1 << (bits - 1)) | 1  # Đảm bảo số lẻ và có đủ bit
+        num = random.getrandbits(bits) | (1 << (bits - 1)) | 1  
         if isprime(num):
             return num
 
 
 def generate_keys():
-    p = generate_prime(2048)  # Tạo số nguyên tố 512-bit
+    p = generate_prime(2048)  
     q = generate_prime(2048)
     n = p * q
     phi = (p - 1) * (q - 1)
 
-    e = 65537  # Giá trị thường dùng cho e
+    e = 65537  
     while phi % e == 0:
-        e = generate_prime(16)  # Chọn e khác nếu cần
+        e = generate_prime(16) 
 
-    d = mod_inverse(e, phi)  # Tính d
+    d = mod_inverse(e, phi)  
     return (e, n), (d, n), p, q, phi, e, d
 
 
