@@ -64,7 +64,6 @@ def process_rsa():
 # UI
 root = tk.Tk()
 root.title("RSA Demo App Nhom 1")
-root.iconbitmap('ptit.ico')
 
 tk.Label(root, text="Nhập văn bản cần mã hóa:").pack(pady=5)
 entry_message = tk.Entry(root, width=60)
